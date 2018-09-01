@@ -1,0 +1,38 @@
+{
+    "name": "php-junior/nova-logs",
+    "description": "Provides a Log Viewer for Laravel Nova",
+    "keywords": [
+        "laravel",
+        "nova",
+        "log"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nyi Nyi Lwin",
+            "email": "nyinyilwin1992@hotmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0",
+        "arcanedev/log-viewer": "^4.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "PhpJunior\\NovaLogViewer\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "PhpJunior\\NovaLogViewer\\ToolServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
