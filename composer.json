@@ -1,17 +1,15 @@
 {
-    "name": "php-junior/nova_logs",
+    "name": "php-junior/nova-logs",
     "description": "Provides a Log Viewer for Laravel Nova",
     "keywords": [
         "laravel",
-        "nova",
-        "log"
+        "nova"
     ],
     "license": "MIT",
     "authors": [
         {
             "name": "Nyi Nyi Lwin",
-            "email": "nyinyilwin1992@hotmail.com",
-            "role": "Developer"
+            "email": "nyinyilwin1992@hotmail.com"
         }
     ],
     "require": {
