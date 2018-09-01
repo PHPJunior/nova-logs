@@ -1,6 +1,6 @@
 # [WIP] Nova Log Viewer
 
-[![Latest Stable Version](https://poser.pugx.org/php-junior/nova-logs/v/stable)](https://packagist.org/packages/php-junior/nova-log-viewer)
+[![Latest Stable Version](https://poser.pugx.org/php-junior/nova_logs/v/stable)](https://packagist.org/packages/php-junior/nova_logs)
 
 ![screenshot 1](1.png)
 
@@ -13,7 +13,7 @@
 You can install the package in to a Laravel app that uses [Nova](https://nova.laravel.com) via composer:
 
 ```bash
-composer require php-junior/nova-logs
+composer require php-junior/nova_logs
 ```
 
 **LogViewer** support only the **daily** log channel, so make sure that the `LOG_CHANNEL` is set to `daily` instead of `stack` in your `.env` file.

@@ -1,5 +1,5 @@
 {
-    "name": "php-junior/nova-logs",
+    "name": "php-junior/nova_logs",
     "description": "Provides a Log Viewer for Laravel Nova",
     "keywords": [
         "laravel",
