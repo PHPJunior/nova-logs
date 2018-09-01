@@ -16,11 +16,21 @@
     ],
     "require": {
         "php": ">=7.1.0",
-        "arcanedev/log-viewer": "^4.5"
+        "arcanedev/log-viewer": "^4.5",
+        "laravel/nova": "*"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^3.6",
+        "phpunit/phpunit": "7.1"
     },
     "autoload": {
         "psr-4": {
             "PhpJunior\\NovaLogViewer\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PhpJunior\\NovaLogViewer\\Tests\\": "tests"
         }
     },
     "extra": {

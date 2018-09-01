@@ -1,4 +1,6 @@
-# Nova Log Viewer
+# [WIP] Nova Log Viewer
+
+[![Latest Stable Version](https://poser.pugx.org/php-junior/nova-logs/v/stable)](https://packagist.org/packages/php-junior/nova-log-viewer)
 
 ![screenshot 1](1.png)
 
