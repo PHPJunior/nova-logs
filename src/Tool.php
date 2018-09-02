@@ -15,7 +15,8 @@ class Tool extends BaseTool
     public function boot()
     {
         Nova::script('nova-log-viewer', __DIR__.'/../dist/js/tool.js');
-        Nova::style('nova-log-viewer', __DIR__.'/../dist/css/tool.css');
+        // Not needed until css is written.
+        // Nova::style('nova-log-viewer', __DIR__.'/../dist/css/tool.css');
     }
 
     /**
