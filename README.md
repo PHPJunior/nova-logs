@@ -1,4 +1,4 @@
-# [WIP] Nova Log Viewer
+# Nova Log Viewer
 
 ![screenshot 1](1.png)
 
