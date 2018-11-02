@@ -128,12 +128,14 @@
                 </delete-resource-modal>
 
                 <modal v-if="stackModalOpen">
-                    <button type="button" @click="closeStackModal" class="btn text-danger float-right p-2">
-                        X
-                    </button>
-                    <div style="width: 950px;height:600px;overflow: overlay;">
-                        <div class="p-4 stack-content">
-                            {{ stack }}
+                    <div class="bg-white">
+                        <button type="button" @click="closeStackModal" class="btn text-danger float-right p-2">
+                            X
+                        </button>
+                        <div style="width: 950px;height:600px;overflow: overlay;">
+                            <div class="p-4 stack-content">
+                                {{ stack }}
+                            </div>
                         </div>
                     </div>
                 </modal>
