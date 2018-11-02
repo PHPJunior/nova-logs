@@ -1,5 +1,8 @@
 # Nova Log Viewer
 
+[![Latest Stable Version](https://poser.pugx.org/php-junior/nova-logs/v/stable)](https://packagist.org/packages/php-junior/nova-logs)
+[![Total Downloads](https://poser.pugx.org/php-junior/nova-logs/downloads)](https://packagist.org/packages/php-junior/nova-logs)
+
 ![screenshot 1](1.png)
 
 ![screenshot 2](2.png)
