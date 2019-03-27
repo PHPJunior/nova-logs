@@ -24,6 +24,11 @@ For Laravel 5.5 and below, set this in your `.env` file
 `
 APP_LOG=daily
 `
+For Laravel 5.6 and above, set this in your `.env` file
+
+`
+LOG_CHANNEL=daily
+`
 
 Next up, you must register the tool with Nova. This is typically done in the `tools` method of the `NovaServiceProvider`.
 
