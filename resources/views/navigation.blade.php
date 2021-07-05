@@ -8,19 +8,19 @@
         <path fill="#B3C1D1" d="M13.997,14.67H5.92c-0.444,0-0.808,0.361-0.808,0.808c0,0.447,0.363,0.808,0.808,0.808h8.077c0.445,0,0.808-0.361,0.808-0.808C14.805,15.032,14.442,14.67,13.997,14.67z"></path>
     </svg>
     <span class="sidebar-label">
-        Log Viewer
+        {{ __('Log Viewer') }}
     </span>
 </h3>
 
 <ul class="list-reset mb-8">
     <li class="leading-wide mb-4 text-sm">
         <router-link :to="{name: 'nova-log-viewer-dashboard'}" class="text-white ml-8 no-underline dim">
-            Dashboard
+            {{ __('Dashboard') }}
         </router-link>
     </li>
     <li class="leading-wide mb-4 text-sm">
         <router-link :to="{name: 'nova-log-viewer-list'}" class="text-white ml-8 no-underline dim">
-            Logs
+            {{ __('Logs') }}
         </router-link>
     </li>
 </ul>
