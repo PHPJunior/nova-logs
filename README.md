@@ -2,6 +2,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/php-junior/nova-logs/v/stable)](https://packagist.org/packages/php-junior/nova-logs)
 [![Total Downloads](https://poser.pugx.org/php-junior/nova-logs/downloads)](https://packagist.org/packages/php-junior/nova-logs)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FPHPJunior%2Fnova-logs.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FPHPJunior%2Fnova-logs?ref=badge_shield)
 
 ![screenshot 1](1.png)
 
@@ -50,3 +51,6 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FPHPJunior%2Fnova-logs.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FPHPJunior%2Fnova-logs?ref=badge_large)
