@@ -1,5 +1,5 @@
 {
-    "name": "eaguad1337/nova-logs",
+    "name": "php-junior/nova-logs",
     "description": "Provides a Log Viewer for Laravel Nova",
     "keywords": [
         "laravel",
@@ -14,7 +14,7 @@
     ],
     "require": {
         "php": "^7.1.3|^8.0",
-        "arcanedev/log-viewer": "^4.6.0"
+        "arcanedev/log-viewer": "*"
     },
     "require-dev": {
         "orchestra/testbench": "^3.6",
@@ -38,10 +38,7 @@
         }
     },
     "config": {
-        "sort-packages": true,
-        "allow-plugins": {
-            "kylekatarnls/update-helper": true
-        }
+        "sort-packages": true
     },
     "minimum-stability": "dev",
     "prefer-stable": true

@@ -132,7 +132,7 @@
                         <button type="button" @click="closeStackModal" class="btn text-danger float-right p-2">
                             X
                         </button>
-                        <div style="width: 950px;min-height:600px;overflow: overlay;">
+                        <div style="width: 950px;height:600px;overflow: overlay;">
                             <div class="p-4 stack-content">
                                 {{ stack }}
                             </div>
