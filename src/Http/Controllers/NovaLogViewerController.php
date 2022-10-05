@@ -2,12 +2,13 @@
 
 namespace PhpJunior\NovaLogViewer\Http\Controllers;
 
+use Arcanedev\LogViewer\Contracts\LogViewer as LogViewerContract;
+use Arcanedev\LogViewer\Entities\Log;
 use Arcanedev\LogViewer\Exceptions\LogNotFoundException;
 use Arcanedev\LogViewer\Tables\StatsTable;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Routing\Controller;
-use Arcanedev\LogViewer\Contracts\LogViewer as LogViewerContract;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
@@ -35,9 +36,9 @@ class NovaLogViewerController extends Controller
      */
     public function getChartData()
     {
-        $stats     = $this->logViewer->statsTable();
+        $stats = $this->logViewer->statsTable();
         $chartData = $this->prepareChartData($stats);
-        $percents  = $this->calcPercentages($stats->footer(), $stats->header());
+        $percents = $this->calcPercentages($stats->footer(), $stats->header());
 
         return response()->json([
             'chartData' => $chartData,
@@ -48,15 +49,15 @@ class NovaLogViewerController extends Controller
     /**
      * List all logs.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\JsonResponse
      */
     public function getListLogs(Request $request)
     {
-        $stats   = $this->logViewer->statsTable();
+        $stats = $this->logViewer->statsTable();
         $headers = $stats->header();
-        $rows    = $this->paginate($stats->rows(), $request);
+        $rows = $this->paginate($stats->rows(), $request);
 
         return response()->json([
             'headers' => $headers,
@@ -67,7 +68,7 @@ class NovaLogViewerController extends Controller
     /**
      * Filter the log entries by level.
      *
-     * @param  string $date
+     * @param string $date
      *
      * @param $level
      * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
@@ -75,9 +76,9 @@ class NovaLogViewerController extends Controller
     public function showByLevel($date, $level)
     {
         $log = $this->getLogOrFail($date);
-        $levels  = $this->logViewer->levelsNames();
+        $levels = $this->logViewer->levelsNames();
         $entries = $this->logViewer->entries($date, $level)->paginate($this->perPage);
-        $menus = $log->menu();
+        $menus = $this->getMenus($log);
 
         return response()->json([
             'log' => $log,
@@ -91,14 +92,14 @@ class NovaLogViewerController extends Controller
             'levels' => $levels,
             'level' => $level,
             'entries' => $entries,
-            'menus' => $menus
+            'menus' => $menus,
         ], 200);
     }
 
     /**
      * Download the log
      *
-     * @param  string  $date
+     * @param string $date
      *
      * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
      */
@@ -110,7 +111,7 @@ class NovaLogViewerController extends Controller
     /**
      * Delete a log.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\JsonResponse
      * @throws \Arcanedev\LogViewer\Exceptions\FilesystemException
@@ -126,7 +127,7 @@ class NovaLogViewerController extends Controller
     /**
      * Prepare chart data.
      *
-     * @param  \Arcanedev\LogViewer\Tables\StatsTable $stats
+     * @param \Arcanedev\LogViewer\Tables\StatsTable $stats
      *
      * @return array
      */
@@ -135,11 +136,11 @@ class NovaLogViewerController extends Controller
         $totals = $stats->totals()->all();
 
         return [
-            'labels'   => Arr::pluck($totals, 'label'),
+            'labels' => Arr::pluck($totals, 'label'),
             'datasets' => [
                 [
-                    'data'                 => Arr::pluck($totals, 'value'),
-                    'backgroundColor'      => Arr::pluck($totals, 'color'),
+                    'data' => Arr::pluck($totals, 'value'),
+                    'backgroundColor' => Arr::pluck($totals, 'color'),
                     'hoverBackgroundColor' => Arr::pluck($totals, 'highlight'),
                 ],
             ],
@@ -147,24 +148,41 @@ class NovaLogViewerController extends Controller
     }
 
     /**
+     * Creates the log menus - without the need for active routes as in Arcanedev\LogViewer\Utilities\LogMenu
+     *
+     * @param Log $log
+     * @param $trans
+     * @return array
+     */
+    protected function getMenus(Log $log, $trans = true)
+    {
+        $items = [];
+        foreach ($log->tree($trans) as $level => $item) {
+            $items[$level] = $item;
+        }
+
+        return $items;
+    }
+
+    /**
      * Calculate the percentage.
      *
-     * @param  array  $total
-     * @param  array  $names
+     * @param array $total
+     * @param array $names
      *
      * @return array
      */
     protected function calcPercentages(array $total, array $names)
     {
         $percents = [];
-        $all      = Arr::get($total, 'all');
+        $all = Arr::get($total, 'all');
 
         foreach ($total as $level => $count) {
             $percents[$level] = [
-                'name'    => $names[$level],
-                'count'   => $count,
+                'name' => $names[$level],
+                'count' => $count,
                 'percent' => $all ? round(($count / $all) * 100, 2) : 0,
-                'backgroundColor' => config('log-viewer.colors.levels.'. $level)
+                'backgroundColor' => config('log-viewer.colors.levels.' . $level)
             ];
         }
 
@@ -174,8 +192,8 @@ class NovaLogViewerController extends Controller
     /**
      * Paginate logs.
      *
-     * @param  array                     $data
-     * @param  \Illuminate\Http\Request  $request
+     * @param array $data
+     * @param \Illuminate\Http\Request $request
      *
      * @return LengthAwarePaginator
      */
@@ -197,7 +215,7 @@ class NovaLogViewerController extends Controller
     /**
      * Get a log or fail
      *
-     * @param  string  $date
+     * @param string $date
      *
      * @return \Arcanedev\LogViewer\Entities\Log|null
      */
@@ -207,8 +225,7 @@ class NovaLogViewerController extends Controller
 
         try {
             $log = $this->logViewer->get($date);
-        }
-        catch (LogNotFoundException $e) {
+        } catch (LogNotFoundException $e) {
             abort(404, $e->getMessage());
         }
 

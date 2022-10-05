@@ -1,2 +1,2 @@
-const config = Nova.config.viewer
+const config = Nova.appConfig.viewer
 export default (level) => config[level]
