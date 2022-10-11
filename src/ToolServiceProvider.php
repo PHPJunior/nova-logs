@@ -2,6 +2,7 @@
 
 namespace PhpJunior\NovaLogViewer;
 
+use Laravel\Nova\Http\Middleware\Authenticate;
 use Laravel\Nova\Nova;
 use Laravel\Nova\Events\ServingNova;
 use Illuminate\Support\Facades\Route;
@@ -17,7 +18,7 @@ class ToolServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'nova-log-viewer');
+        $this->registerPublishing();
 
         $this->app->booted(function () {
             $this->routes();
@@ -41,9 +42,12 @@ class ToolServiceProvider extends ServiceProvider
             return;
         }
 
+        Nova::router(['nova', Authenticate::class, Authorize::class], 'nova-logs')
+            ->group(__DIR__ . '/../routes/inertia.php');
+
         Route::middleware(['nova', Authorize::class])
-                ->prefix('nova-vendor/php-junior/nova-log-viewer')
-                ->group(__DIR__.'/../routes/api.php');
+            ->prefix('nova-vendor/php-junior/nova-log-viewer')
+            ->group(__DIR__ . '/../routes/api.php');
     }
 
     /**
@@ -53,6 +57,24 @@ class ToolServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->mergeConfigFrom(__DIR__ . '/../config/nova-logs.php', 'nova-logs');
+
+        if (config('nova-logs.log-viewer.force_disable_routing', true)) {
+            config()->set('log-viewer.route.enabled', false);
+        }
+    }
+
+    /**
+     * Register the package's publishable resources.
+     *
+     * @return void
+     */
+    private function registerPublishing()
+    {
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                __DIR__ . '/../config/nova-logs.php' => config_path('nova-logs.php'),
+            ], 'nova-logs-config');
+        }
     }
 }

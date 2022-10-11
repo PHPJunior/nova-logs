@@ -1,19 +1,9 @@
-Nova.booting((Vue, router) => {
-    router.addRoutes([
-        {
-            name: 'nova-log-viewer-dashboard',
-            path: '/nova-log-viewer/dashboard',
-            component: require('./components/Dashboard'),
-        },
-        {
-            name: 'nova-log-viewer-list',
-            path: '/nova-log-viewer/list',
-            component: require('./components/Logs/LogsTool'),
-        },
-        {
-            name: 'nova-log-viewer-show',
-            path: '/nova-log-viewer/list/:date/:level',
-            component: require('./components/Show/Logs'),
-        },
-    ])
+import Dashboard from './pages/Dashboard';
+import LogsTool from './pages/LogsTool';
+import ShowLogs from './pages/ShowLogs';
+
+Nova.booting((app, store) => {
+    Nova.inertia('NovaLogs', Dashboard);
+    Nova.inertia('LogsTool', LogsTool);
+    Nova.inertia('ShowLogs', ShowLogs);
 })

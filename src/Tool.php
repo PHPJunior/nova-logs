@@ -2,6 +2,10 @@
 
 namespace PhpJunior\NovaLogViewer;
 
+use Illuminate\Http\Request;
+use Laravel\Nova\Menu\MenuGroup;
+use Laravel\Nova\Menu\MenuItem;
+use Laravel\Nova\Menu\MenuSection;
 use Laravel\Nova\Nova;
 use Laravel\Nova\Tool as BaseTool;
 
@@ -14,18 +18,23 @@ class Tool extends BaseTool
      */
     public function boot()
     {
-        Nova::script('nova-log-viewer', __DIR__.'/../dist/js/tool.js');
-        // Not needed until css is written.
-        // Nova::style('nova-log-viewer', __DIR__.'/../dist/css/tool.css');
+        Nova::script('nova-logs', __DIR__ . '/../dist/js/tool.js');
+        Nova::style('nova-logs', __DIR__ . '/../dist/css/tool.css');
     }
 
     /**
-     * Build the view that renders the navigation links for the tool.
+     * Build the menu that renders the navigation links for the tool.
      *
-     * @return \Illuminate\View\View
+     * @param \Illuminate\Http\Request $request
+     * @return mixed
      */
-    public function renderNavigation()
+    public function menu(Request $request)
     {
-        return view('nova-log-viewer::navigation');
+        return MenuSection::make('Log Viewer', [
+            MenuItem::link('Dashboard', '/nova-logs/dashboard'),
+            MenuItem::link('Logs', '/nova-logs/list'),
+        ])
+            ->collapsable()
+            ->icon('document-text');
     }
 }

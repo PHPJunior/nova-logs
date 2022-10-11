@@ -9,6 +9,13 @@
 
 ![screenshot 3](3.png)
 
+## Requirements
+
+- `php: ^7.4 | ^8`
+- `laravel/nova: ^4`
+
+For Laravel Nova Version 3, please use v1 instead.
+
 ## Installation
 
 You can install the package in to a Laravel app that uses [Nova](https://nova.laravel.com) via composer:
@@ -37,6 +44,12 @@ public function tools()
         new \PhpJunior\NovaLogViewer\Tool(),
     ];
 }
+```
+
+To publish the configuration use:
+
+```php
+php artisan vendor:publish --tag=nova-logs-config
 ```
 
 ### Changelog
