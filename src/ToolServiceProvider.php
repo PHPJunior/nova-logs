@@ -45,7 +45,7 @@ class ToolServiceProvider extends ServiceProvider
         Nova::router(['nova', Authenticate::class, Authorize::class], 'nova-logs')
             ->group(__DIR__ . '/../routes/inertia.php');
 
-        Route::middleware(['nova', Authorize::class])
+        Route::middleware(['nova', 'nova:api', Authorize::class])
             ->prefix('nova-vendor/php-junior/nova-log-viewer')
             ->group(__DIR__ . '/../routes/api.php');
     }
