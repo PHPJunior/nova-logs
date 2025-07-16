@@ -13,13 +13,13 @@
         }
     ],
     "require": {
-        "php": "^7.3|^8.0",
-        "laravel/nova": "^4.0",
-        "arcanedev/log-viewer": "*"
+        "php": "^8.1",
+        "laravel/nova": "^5.0",
+        "arcanedev/log-viewer": "^11.0"
     },
     "require-dev": {
-        "orchestra/testbench": "^3.6",
-        "phpunit/phpunit": "7.1"
+        "orchestra/testbench": "^8.0|^9.0",
+        "phpunit/phpunit": "^10.0|^11.0"
     },
     "autoload": {
         "psr-4": {
