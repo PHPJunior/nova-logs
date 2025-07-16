@@ -2,7 +2,7 @@
 
 namespace PhpJunior\NovaLogViewer;
 
-use Laravel\Nova\Http\Requests\NovaRequest;
+use Illuminate\Http\Request;
 use Laravel\Nova\Menu\MenuItem;
 use Laravel\Nova\Menu\MenuSection;
 use Laravel\Nova\Nova;
@@ -24,10 +24,10 @@ class Tool extends BaseTool
     /**
      * Build the menu that renders the navigation links for the tool.
      *
-     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @param \Illuminate\Http\Request $request
      * @return mixed
      */
-    public function menu(NovaRequest $request)
+    public function menu(Request $request)
     {
         return MenuSection::make('Log Viewer', [
             MenuItem::link('Dashboard', '/nova-logs/dashboard'),
