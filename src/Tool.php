@@ -3,7 +3,6 @@
 namespace PhpJunior\NovaLogViewer;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Menu\MenuGroup;
 use Laravel\Nova\Menu\MenuItem;
 use Laravel\Nova\Menu\MenuSection;
 use Laravel\Nova\Nova;
